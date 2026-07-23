@@ -1,8 +1,17 @@
-import { weatherData } from "../data/mockWeather"
 import ForecastCard from "./ForecastCard"
+import { getWeatherIcon } from "../utils/weatherCode"
+import { formatDay } from "../utils/date"
 
+type ForecastProps = {
+  daily: {
+    time: string[]
+    temperatureMax: number[]
+    temperatureMin: number[]
+    weatherCode: number[]
+  }
+}
 
-function Forecast() {
+function Forecast({ daily }: ForecastProps) {
   return (
     <section className="mt-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">
@@ -10,14 +19,14 @@ function Forecast() {
       </h2>
 
        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7">
-        {weatherData.forecast.map((day) => (
-          <ForecastCard
-            key={day.day}
-            day={day.day}
-            icon={day.icon}
-            max={day.max}
-            min={day.min}
-          />
+        {daily.time.map((date, index) => (
+        <ForecastCard
+            key={date}
+            day={formatDay(date)}
+            icon={getWeatherIcon(daily.weatherCode[index])}
+            max={daily.temperatureMax[index]}
+            min={daily.temperatureMin[index]}
+        />
         ))}
       </div>
 

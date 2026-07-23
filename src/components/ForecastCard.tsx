@@ -1,8 +1,8 @@
 type ForecastCardProps = {
   day: string
   icon: string
-  max: string
-  min: string
+  max: number
+  min: number
 }
 
 function ForecastCard({ day, icon, max, min }: ForecastCardProps) {
@@ -16,13 +16,18 @@ function ForecastCard({ day, icon, max, min }: ForecastCardProps) {
         {icon}
       </p>
 
-      <p className="text-xl font-bold text-gray-800">
-        {max}
-      </p>
+      <div className="flex justify-center gap-2">
 
-      <p className="text-gray-500">
-        {min}
-      </p>
+        <p className="text-xl font-bold text-gray-800">
+            {max}°
+        </p>
+
+        <p className="text-gray-400">
+            {min}°
+        </p>
+        
+        </div>
+
     </article>
   )
 }
