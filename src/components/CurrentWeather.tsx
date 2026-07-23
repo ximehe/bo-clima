@@ -2,12 +2,14 @@ type CurrentWeatherProps = {
   city: string
   temperature: number
   condition: string
+  icon: string
 }
 
 function CurrentWeather({
   city,
   temperature,
   condition,
+  icon,
 }: CurrentWeatherProps) {
 
   return (
@@ -18,7 +20,7 @@ function CurrentWeather({
       </h2>
 
       <p className="text-6xl my-4">
-        🌤️
+        {icon}
       </p>
 
       <h1 className="text-5xl font-bold text-gray-900">

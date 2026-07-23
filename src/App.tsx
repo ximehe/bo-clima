@@ -6,6 +6,7 @@ import Forecast from "./components/Forecast"
 import FunnyMessage from "./components/FunnyMessage"
 import type { WeatherResponse } from "./types/weather"
 import { getWeatherDescription } from "./utils/weatherCode"
+import { getWeatherIcon } from "./utils/weatherCode"
 
 function App() {
 
@@ -45,6 +46,7 @@ if (!weather) {
         city="Montevideo"
         temperature={weather.current.temperature_2m}
         condition={getWeatherDescription(weather.current.weather_code)}
+        icon={getWeatherIcon(weather.current.weather_code)}
         />
 
         <WeatherDetails
