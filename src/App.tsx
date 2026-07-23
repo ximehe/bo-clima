@@ -1,10 +1,25 @@
+import CurrentWeather from "./components/CurrentWeather"
+import WeatherDetails from "./components/WeatherDetails"
+import Forecast from "./components/Forecast"
+
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-500">
-      <h1 className="text-5xl font-bold text-white">
-        ¡Hola, BoClima! 🌦️
-      </h1>
-    </div>
+    <main className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-4xl mx-auto">
+        
+        <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">
+          BoClima 🌦️
+        </h1>
+
+        <CurrentWeather />
+
+        <WeatherDetails />
+
+        <Forecast />
+
+      </div>
+    </main>
   )
 }
 
