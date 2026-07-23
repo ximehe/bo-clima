@@ -1,4 +1,6 @@
+import { weatherData } from "../data/mockWeather"
 import ForecastCard from "./ForecastCard"
+
 
 function Forecast() {
   return (
@@ -7,37 +9,18 @@ function Forecast() {
         Pronóstico semanal
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-
-        <ForecastCard
-          day="Lunes"
-          icon="☀️"
-          max="25°"
-          min="17°"
-        />
-
-        <ForecastCard
-          day="Martes"
-          icon="🌧️"
-          max="18°"
-          min="12°"
-        />
-
-        <ForecastCard
-          day="Miércoles"
-          icon="🌤️"
-          max="22°"
-          min="15°"
-        />
-
-        <ForecastCard
-          day="Jueves"
-          icon="🌬️"
-          max="20°"
-          min="14°"
-        />
-
+       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7">
+        {weatherData.forecast.map((day) => (
+          <ForecastCard
+            key={day.day}
+            day={day.day}
+            icon={day.icon}
+            max={day.max}
+            min={day.min}
+          />
+        ))}
       </div>
+
     </section>
   )
 }

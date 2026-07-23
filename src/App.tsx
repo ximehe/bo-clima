@@ -1,6 +1,7 @@
 import CurrentWeather from "./components/CurrentWeather"
 import WeatherDetails from "./components/WeatherDetails"
 import Forecast from "./components/Forecast"
+import FunnyMessage from "./components/FunnyMessage"
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
         <WeatherDetails />
 
         <Forecast />
+
+        <FunnyMessage />
 
       </div>
     </main>
