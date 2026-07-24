@@ -1,4 +1,3 @@
-import { getCurrentWeather } from "./services/weatherApi"
 import { useEffect, useState } from "react"
 import CurrentWeather from "./components/CurrentWeather"
 import WeatherDetails from "./components/WeatherDetails"
@@ -7,21 +6,36 @@ import FunnyMessage from "./components/FunnyMessage"
 import type { WeatherResponse } from "./types/weather"
 import { getWeatherDescription } from "./utils/weatherCode"
 import { getWeatherIcon } from "./utils/weatherCode"
+import { getCurrentWeather, getCoordinates } from "./services/weatherApi"
+import SearchBar from "./components/SearchBar"
 
 function App() {
 
   const [weather, setWeather] = useState<WeatherResponse | null>(null)
+  const [city, setCity] = useState("Montevideo")
+  const [error, setError] = useState("")
 
-  useEffect(() => {
+  async function handleSearch(cityName: string) {
+  const coordinates = await getCoordinates(cityName)
 
-    async function loadWeather() {
-    const data = await getCurrentWeather()
-    console.log(data)
-    setWeather(data)
+  if (!coordinates) {
+  setError("⚠️ No encontramos esa ciudad. Probá con otro departamento o localidad de Uruguay 🇺🇾.")
+  return
+  }
+  setError("")
 
+  setCity(coordinates.name)
+
+  const data = await getCurrentWeather(
+    coordinates.latitude,
+    coordinates.longitude
+  )
+
+  setWeather(data)
   }
 
-  loadWeather()
+  useEffect(() => {
+  handleSearch("Montevideo")
   }, [])
 
 
@@ -42,8 +56,20 @@ if (!weather) {
           BoClima 🌦️
         </h1>
 
+
+       <SearchBar
+        city={city}
+        onSearch={handleSearch}
+        />
+
+        {error && (
+        <p className="text-red-500 text-center mb-4">
+          {error}
+        </p>
+        )}
+
         <CurrentWeather
-        city="Montevideo"
+        city={city}
         temperature={weather.current.temperature_2m}
         condition={getWeatherDescription(weather.current.weather_code)}
         icon={getWeatherIcon(weather.current.weather_code)}
