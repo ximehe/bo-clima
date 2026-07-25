@@ -14,11 +14,11 @@ type ForecastProps = {
 function Forecast({ daily }: ForecastProps) {
   return (
     <section className="mt-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">
+      <h2 className="text-2xl font-bold text-slate-800 mb-4">
         Pronóstico semanal
       </h2>
 
-       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7">
+       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
         {daily.time.map((date, index) => (
         <ForecastCard
             key={date}

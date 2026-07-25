@@ -5,20 +5,20 @@ type WeatherDetailsProps = {
 
 function WeatherDetails({ humidity, wind }: WeatherDetailsProps) {
   return (
-    <section className="bg-white rounded-2xl shadow-md p-6 mt-6 grid grid-cols-2 gap-4">
+    <section className="bg-white rounded-3xl shadow-sm border border-sky-100 p-6 grid grid-cols-2 gap-6">
       <div className="text-center">
-        <p className="text-3xl">💧</p>
-        <p className="text-gray-500 mt-2">Humedad</p>
-        <p className="text-xl font-bold text-gray-800">
+        <p className="text-4xl">💧</p>
+        <p className="text-slate-500 mt-2">Humedad</p>
+        <p className="text-2xl font-bold text-slate-800">
           {humidity}%
         </p>
       </div>
 
       <div className="text-center">
-        <p className="text-3xl">🌬️</p>
-        <p className="text-gray-500 mt-2">Viento</p>
-        <p className="text-xl font-bold text-gray-800">
-          {wind}km/h
+        <p className="text-4xl">🌬️</p>
+        <p className="text-slate-500 mt-2">Viento</p>
+        <p className="text-2xl font-bold text-slate-800">
+          {Math.round(wind)}km/h
         </p>
       </div>
     </section>

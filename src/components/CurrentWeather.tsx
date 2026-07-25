@@ -13,21 +13,21 @@ function CurrentWeather({
 }: CurrentWeatherProps) {
 
   return (
-    <section className="bg-white rounded-2xl shadow-md p-6 text-center">
+    <section className="bg-white rounded-3xl shadow-sm p-8 text-center border border-sky-100">
 
-      <h2 className="text-2xl font-semibold text-gray-800">
+      <h2 className="text-2xl font-semibold text-slate-700">
         {city}
       </h2>
 
-      <p className="text-6xl my-4">
+      <p className="text-7xl my-6">
         {icon}
       </p>
 
-      <h1 className="text-5xl font-bold text-gray-900">
-        {temperature}°
-      </h1>
+      <p className="text-6xl font-bold text-slate-900">
+        {Math.round(temperature)}°
+      </p>
 
-      <p className="text-gray-500 mt-2">
+      <p className="text-lg text-slate-500 mt-2">
         {condition}
       </p>
 

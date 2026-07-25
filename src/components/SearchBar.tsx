@@ -17,19 +17,24 @@ function SearchBar({ city, onSearch }: SearchBarProps) {
   if (search.trim() === "") {
     return
   }
-  
+
   onSearch(search)
   setSearch("")
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="relative">
+
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+          🔍
+          </span>
+
       <input
         type="text"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
-        placeholder="Buscar ciudad..."
-        className="w-full p-3 rounded-xl border border-gray-300 mb-6"
+        placeholder="Buscar ciudad o localidad..."
+        className="w-full pl-10 pr-4 py-3 rounded-xl border border-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
       />
 
       <button

@@ -13,7 +13,7 @@ export async function getCurrentWeather(
 
 export async function getCoordinates(city: string) {
   const response = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=es&format=json&countryCode=UY`
+    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=es&format=json&country_code=UY`
   )
 
   const data = await response.json()

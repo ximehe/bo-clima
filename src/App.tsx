@@ -7,7 +7,8 @@ import type { WeatherResponse } from "./types/weather"
 import { getWeatherDescription } from "./utils/weatherCode"
 import { getWeatherIcon } from "./utils/weatherCode"
 import { getCurrentWeather, getCoordinates } from "./services/weatherApi"
-import SearchBar from "./components/SearchBar"
+import Navbar from "./components/Navbar"
+import { getWeatherAdvice } from "./utils/weatherAdvice"
 
 function App() {
 
@@ -49,24 +50,24 @@ if (!weather) {
   )
 }
   return (
-    <main className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto">
+    <>
+     <Navbar
+     city={city}
+     onSearch={handleSearch}
+     />
+    <main className="min-h-screen bg-sky-50">
+      <div className="max-w-6xl mx-auto px-6 py-8">
         
-        <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">
-          BoClima 🌦️
-        </h1>
-
-
-       <SearchBar
-        city={city}
-        onSearch={handleSearch}
-        />
 
         {error && (
         <p className="text-red-500 text-center mb-4">
           {error}
         </p>
         )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <div className="lg:col-span-2 space-y-6">
 
         <CurrentWeather
         city={city}
@@ -80,7 +81,19 @@ if (!weather) {
         wind={weather.current.wind_speed_10m}
         />
 
-        <Forecast
+        </div>
+
+        <div className="h-full">
+        <FunnyMessage message={getWeatherAdvice(
+          weather.current.temperature_2m,
+          weather.current.weather_code,
+          weather.current.wind_speed_10m
+        )}/>
+        </div>
+
+       </div>
+
+       <Forecast
         daily={{
           time: weather.daily.time,
           temperatureMax: weather.daily.temperature_2m_max,
@@ -89,10 +102,9 @@ if (!weather) {
         }}
         />
 
-        <FunnyMessage />
-
       </div>
     </main>
+     </>
   )
 }
 
