@@ -70,11 +70,35 @@ function App() {
 
 
 if (!weather) {
- return (
-    <main className="min-h-screen flex items-center justify-center">
-      <p className="text-gray-500 text-xl">
-        Cargando clima...
-      </p>
+  return (
+    <main
+      className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${
+        darkMode ? "bg-slate-900" : "bg-sky-50"
+      }`}
+    >
+      <div className="text-center">
+
+        <div className="text-6xl animate-bounce mb-6">
+          🌦️
+        </div>
+
+        <p
+          className={`text-2xl font-semibold ${
+            darkMode ? "text-white" : "text-slate-800"
+          }`}
+        >
+          Cargando el clima...
+        </p>
+
+        <p
+          className={`mt-2 ${
+            darkMode ? "text-slate-400" : "text-slate-500"
+          }`}
+        >
+          Estamos mirando cómo viene el cielo ☁️
+        </p>
+
+      </div>
     </main>
   )
 }
