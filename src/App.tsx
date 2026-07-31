@@ -17,7 +17,10 @@ function App() {
   const [city, setCity] = useState("Montevideo")
   const [error, setError] = useState("")
   const [isCurrentLocation, setIsCurrentLocation] = useState(false)
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => {
+  const savedDarkMode = localStorage.getItem("darkMode")
+  return savedDarkMode === "true"
+  })
 
   async function handleSearch(cityName: string) {
   const coordinates = await getCoordinates(cityName)
@@ -68,6 +71,9 @@ function App() {
   }
   }, [])
 
+  useEffect(() => {
+  localStorage.setItem("darkMode", darkMode.toString())
+  }, [darkMode])
 
 if (!weather) {
   return (
