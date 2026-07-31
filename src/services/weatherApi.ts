@@ -13,7 +13,7 @@ export async function getCurrentWeather(
 
 export async function getCoordinates(city: string) {
   const response = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=es&format=json&country_code=UY`
+   `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=es&format=json`
   )
 
   const data = await response.json()
@@ -22,9 +22,44 @@ export async function getCoordinates(city: string) {
     return null
   }
 
-  return {
-    latitude: data.results[0].latitude,
-    longitude: data.results[0].longitude,
-    name: data.results[0].name,
+  const uruguayResult = data.results.find(
+    (result: any) => result.country_code === "UY"
+  )
+
+  if (!uruguayResult) {
+    return null
   }
+
+
+  return {
+    latitude: uruguayResult.latitude,
+    longitude: uruguayResult.longitude,
+    name: uruguayResult.name,
+  }
+}
+
+export function getCurrentLocation(): Promise<GeolocationPosition> {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject)
+  })
+}
+
+export async function getLocationName(
+  latitude: number,
+  longitude: number
+) {
+  const response = await fetch(
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`
+  )
+
+  const data = await response.json()
+
+  return (
+    data.address?.city ||
+    data.address?.town ||
+    data.address?.village ||
+    data.address?.municipality ||
+    data.address?.county ||
+    "Mi ubicación"
+  )
 }

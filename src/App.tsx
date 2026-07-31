@@ -6,15 +6,18 @@ import FunnyMessage from "./components/FunnyMessage"
 import type { WeatherResponse } from "./types/weather"
 import { getWeatherDescription } from "./utils/weatherCode"
 import { getWeatherIcon } from "./utils/weatherCode"
-import { getCurrentWeather, getCoordinates } from "./services/weatherApi"
+import { getCurrentWeather, getCoordinates, getCurrentLocation, getLocationName } from "./services/weatherApi"
 import Navbar from "./components/Navbar"
 import { getWeatherAdvice } from "./utils/weatherAdvice"
+
 
 function App() {
 
   const [weather, setWeather] = useState<WeatherResponse | null>(null)
   const [city, setCity] = useState("Montevideo")
   const [error, setError] = useState("")
+  const [isCurrentLocation, setIsCurrentLocation] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
 
   async function handleSearch(cityName: string) {
   const coordinates = await getCoordinates(cityName)
@@ -26,6 +29,8 @@ function App() {
   setError("")
 
   setCity(coordinates.name)
+  setIsCurrentLocation(false)
+  localStorage.setItem("lastCity", coordinates.name)
 
   const data = await getCurrentWeather(
     coordinates.latitude,
@@ -35,8 +40,32 @@ function App() {
   setWeather(data)
   }
 
+  async function handleCurrentLocation() {
+  try {
+    const position = await getCurrentLocation()
+
+    const latitude = position.coords.latitude
+    const longitude = position.coords.longitude
+    const locationName = await getLocationName(latitude, longitude)
+
+    const data = await getCurrentWeather(latitude, longitude)
+
+    setWeather(data)
+    setCity(locationName)
+    setIsCurrentLocation(true)
+    setError("")
+  } catch {
+    setError("No pudimos acceder a tu ubicación.")
+  }
+  }
+
   useEffect(() => {
+  const lastCity = localStorage.getItem("lastCity")
+  if (lastCity) {
+    handleSearch(lastCity)
+  } else {
   handleSearch("Montevideo")
+  }
   }, [])
 
 
@@ -54,8 +83,14 @@ if (!weather) {
      <Navbar
      city={city}
      onSearch={handleSearch}
+     onCurrentLocation={handleCurrentLocation}
+     darkMode={darkMode}
+     onToggleDarkMode={() => setDarkMode(!darkMode)}
      />
-    <main className="min-h-screen bg-sky-50">
+    <main className={`min-h-screen transition-colors duration-300 ${
+     darkMode ? "bg-slate-900" : "bg-sky-50"
+     }`}
+    >
       <div className="max-w-6xl mx-auto px-6 py-8">
         
 
@@ -74,11 +109,14 @@ if (!weather) {
         temperature={weather.current.temperature_2m}
         condition={getWeatherDescription(weather.current.weather_code)}
         icon={getWeatherIcon(weather.current.weather_code)}
+        isCurrentLocation={isCurrentLocation}
+        darkMode={darkMode}
         />
 
         <WeatherDetails
         humidity={weather.current.relative_humidity_2m}
         wind={weather.current.wind_speed_10m}
+        darkMode={darkMode}
         />
 
         </div>
@@ -88,7 +126,9 @@ if (!weather) {
           weather.current.temperature_2m,
           weather.current.weather_code,
           weather.current.wind_speed_10m
-        )}/>
+        )}
+        darkMode={darkMode}
+        />
         </div>
 
        </div>
@@ -100,6 +140,7 @@ if (!weather) {
           temperatureMin: weather.daily.temperature_2m_min,
           weatherCode: weather.daily.weather_code,
         }}
+        darkMode={darkMode}
         />
 
       </div>

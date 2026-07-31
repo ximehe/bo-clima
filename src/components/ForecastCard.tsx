@@ -3,12 +3,23 @@ type ForecastCardProps = {
   icon: string
   max: number
   min: number
+  darkMode: boolean
 }
 
-function ForecastCard({ day, icon, max, min }: ForecastCardProps) {
+function ForecastCard({ day, icon, max, min, darkMode }: ForecastCardProps) {
   return (
-    <article className="bg-white rounded-3xl border border-sky-100 shadow-sm p-4 text-center">
-      <h3 className="font-semibold text-gray-700">
+    <article 
+    className={`rounded-3xl border shadow-sm p-4 text-center transition-colors duration-300 ${
+    darkMode
+      ? "bg-slate-800 border-slate-700"
+      : "bg-white border-sky-100"
+    }`}
+    >
+      <h3 
+      className={`font-semibold ${
+        darkMode ? "text-slate-200" : "text-gray-700"
+      }`}
+      >
         {day}
       </h3>
 
@@ -18,11 +29,19 @@ function ForecastCard({ day, icon, max, min }: ForecastCardProps) {
 
       <div className="flex justify-center gap-2">
 
-        <p className="text-xl font-bold text-gray-800">
+        <p 
+        className={`text-xl font-bold ${
+          darkMode ? "text-white" : "text-gray-800"
+        }`}
+        >
             {Math.round(max)}°
         </p>
 
-        <p className="text-gray-400">
+        <p 
+        className={`${
+          darkMode ? "text-slate-400" : "text-gray-400"
+        }`}
+        >
             {Math.round(min)}°
         </p>
         

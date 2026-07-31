@@ -9,12 +9,17 @@ type ForecastProps = {
     temperatureMin: number[]
     weatherCode: number[]
   }
+  darkMode: boolean
 }
 
-function Forecast({ daily }: ForecastProps) {
+function Forecast({ daily, darkMode }: ForecastProps) {
   return (
     <section className="mt-6">
-      <h2 className="text-2xl font-bold text-slate-800 mb-4">
+      <h2 
+      className={`text-2xl font-bold mb-4 ${
+        darkMode ? "text-white" : "text-slate-800"
+      }`}
+      >
         Pronóstico semanal
       </h2>
 
@@ -26,6 +31,7 @@ function Forecast({ daily }: ForecastProps) {
             icon={getWeatherIcon(daily.weatherCode[index])}
             max={daily.temperatureMax[index]}
             min={daily.temperatureMin[index]}
+            darkMode={darkMode}
         />
         ))}
       </div>
