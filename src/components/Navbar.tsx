@@ -1,3 +1,6 @@
+import boclimaLogo from "../assets/boclima-logo-horizontal.png"
+import boclimaLogo2 from "../assets/boclima-logo-horizontal2.png"
+
 type NavbarProps = {
   city: string
   onSearch: (city: string) => void
@@ -21,25 +24,17 @@ function Navbar({ city, onSearch, onCurrentLocation, darkMode,
       <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
 
         <div className="flex items-center gap-3">
-        <span className="text-4xl">🌦️</span>
-
-        <div className="flex flex-col">
-            <h1 
-            className={`text-2xl font-bold ${
-              darkMode ? "text-white" : "text-slate-800"
-            }`}
-            >
-            BoClima
-            </h1>
-
-            <p
-            className={`text-xs ${
-              darkMode ? "text-slate-400" : "text-slate-500"
-            }`}
-            >
-            El clima de Uruguay
-            </p>
+        <div className="flex items-center">
+          <div className="relative w-48 h-14">
+            <img
+              src={boclimaLogo2}
+              alt="BoClima"
+              className="absolute left-0 top-[50%] -translate-y-1/2 h-35 w-auto object-contain"
+            />
+          </div>
         </div>
+
+      
 </div>
 
         <div className="flex items-center gap-2 w-full md:w-auto">
