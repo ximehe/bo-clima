@@ -6,15 +6,15 @@ type FunnyMessageProps = {
 function FunnyMessage({ message, darkMode }: FunnyMessageProps) {
   return (
    <section 
-   className={`h-full rounded-3xl border p-6 shadow-sm flex flex-col transition-colors duration-300 ${
+   className={`h-full rounded-3xl border p-6 shadow-md flex flex-col transition-colors duration-300 ${
     darkMode
       ? "bg-slate-800 border-slate-700"
-      : "bg-sky-100 border-sky-200"
+      : "bg-[#FEF3C7] border-yellow-300"
    }`}
    >
       <h2 
       className={`text-2xl font-bold mb-6 ${
-       darkMode ? "text-white" : "text-slate-800"
+       darkMode ? "text-white" : "text-sky-800"
       }`}
       >
         💬 Consejo del día
