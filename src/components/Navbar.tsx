@@ -1,4 +1,3 @@
-import boclimaLogo from "../assets/boclima-logo-horizontal.png"
 import boclimaLogo2 from "../assets/boclima-logo-horizontal2.png"
 
 type NavbarProps = {
