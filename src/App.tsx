@@ -9,7 +9,7 @@ import { getWeatherIcon } from "./utils/weatherCode"
 import { getCurrentWeather, getCoordinates, getCurrentLocation, getLocationName } from "./services/weatherApi"
 import Navbar from "./components/Navbar"
 import { getWeatherAdvice } from "./utils/weatherAdvice"
-
+import boclimaLoader from "./assets/boclima-logo-loader.png"
 
 function App() {
 
@@ -78,14 +78,18 @@ function App() {
 if (!weather) {
   return (
     <main
-      className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${
+      className={`min-h-screen flex items-center justify-center px-6 transition-colors duration-300 ${
         darkMode ? "bg-slate-900" : "bg-sky-50"
       }`}
     >
       <div className="text-center">
 
-        <div className="text-6xl animate-bounce mb-6">
-          🌦️
+        <div className="flex justify-center mb-2">
+          <img
+            src={boclimaLoader}
+            alt="BoClima"
+            className="w-[200px] h-[200px] object-contain animate-pulse"
+          />
         </div>
 
         <p
