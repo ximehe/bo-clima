@@ -79,7 +79,7 @@ if (!weather) {
   return (
     <main
       className={`min-h-screen flex items-center justify-center px-6 transition-colors duration-300 ${
-        darkMode ? "bg-slate-900" : "bg-sky-50"
+        darkMode ? "bg-[#0F172A]" : "bg-[#7DD3FC]"
       }`}
     >
       <div className="text-center">
@@ -122,7 +122,7 @@ if (!weather) {
      onToggleDarkMode={() => setDarkMode(!darkMode)}
      />
     <main className={`min-h-screen transition-colors duration-300 ${
-     darkMode ? "bg-slate-900" : "bg-sky-50"
+     darkMode ? "bg-[#0F172A]" : "bg-[#7DD3FC]"
      }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-8">

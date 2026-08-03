@@ -9,10 +9,10 @@ type ForecastCardProps = {
 function ForecastCard({ day, icon, max, min, darkMode }: ForecastCardProps) {
   return (
     <article 
-    className={`rounded-3xl border shadow-sm p-4 text-center transition-colors duration-300 ${
+    className={`rounded-3xl border shadow-md p-4 text-center transition-colors duration-300 ${
     darkMode
       ? "bg-slate-800 border-slate-700"
-      : "bg-white border-sky-100"
+      : "bg-white border-sky-200"
     }`}
     >
       <h3 

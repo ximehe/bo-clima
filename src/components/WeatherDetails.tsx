@@ -7,10 +7,10 @@ type WeatherDetailsProps = {
 function WeatherDetails({ humidity, wind, darkMode }: WeatherDetailsProps) {
   return (
     <section
-    className={`rounded-3xl shadow-sm border p-6 grid grid-cols-2 gap-6 transition-colors duration-300 ${
+    className={`rounded-3xl shadow-md border p-6 grid grid-cols-2 gap-6 transition-colors duration-300 ${
     darkMode
       ? "bg-slate-800 border-slate-700"
-      : "bg-white border-sky-100"
+      : "bg-white border-sky-200"
      }`}
     >
       <div className="text-center">

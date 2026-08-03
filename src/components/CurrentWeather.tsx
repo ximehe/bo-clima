@@ -18,10 +18,10 @@ function CurrentWeather({
 
   return (
     <section 
-    className={`rounded-3xl shadow-sm p-8 text-center border transition-colors duration-300 ${
+    className={`rounded-3xl shadow-md p-8 text-center border transition-colors duration-300 ${
     darkMode
       ? "bg-slate-800 border-slate-700"
-      : "bg-white border-sky-100"
+      : "bg-white border-sky-200"
     }`}
     >
 
