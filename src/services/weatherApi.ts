@@ -12,8 +12,123 @@ export async function getCurrentWeather(
 }
 
 export async function getCoordinates(city: string) {
+  const normalizedCity = city
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+
+  const departmentCoordinates: Record<
+    string,
+    { latitude: number; longitude: number; name: string }
+  > = {
+    artigas: {
+      latitude: -30.4007,
+      longitude: -56.4749,
+      name: "Artigas",
+    },
+    canelones: {
+      latitude: -34.5228,
+      longitude: -56.2778,
+      name: "Canelones",
+    },
+    "cerro largo": {
+      latitude: -32.3703,
+      longitude: -54.1675,
+      name: "Cerro Largo",
+    },
+    colonia: {
+      latitude: -34.4626,
+      longitude: -57.8398,
+      name: "Colonia",
+    },
+    durazno: {
+      latitude: -33.3806,
+      longitude: -56.5236,
+      name: "Durazno",
+    },
+    flores: {
+      latitude: -33.5165,
+      longitude: -56.8996,
+      name: "Flores",
+    },
+    florida: {
+      latitude: -34.0956,
+      longitude: -56.2142,
+      name: "Florida",
+    },
+    lavalleja: {
+      latitude: -34.3759,
+      longitude: -55.2377,
+      name: "Lavalleja",
+    },
+    maldonado: {
+      latitude: -34.9011,
+      longitude: -54.9518,
+      name: "Maldonado",
+    },
+    montevideo: {
+      latitude: -34.9011,
+      longitude: -56.1645,
+      name: "Montevideo",
+    },
+    paysandu: {
+      latitude: -32.3214,
+      longitude: -58.0756,
+      name: "Paysandú",
+    },
+    "rio negro": {
+      latitude: -32.3171,
+      longitude: -58.0756,
+      name: "Río Negro",
+    },
+    rivera: {
+      latitude: -30.9053,
+      longitude: -55.5508,
+      name: "Rivera",
+    },
+    rocha: {
+      latitude: -34.4833,
+      longitude: -54.3333,
+      name: "Rocha",
+    },
+    salto: {
+      latitude: -31.3833,
+      longitude: -57.9667,
+      name: "Salto",
+    },
+    "san jose": {
+      latitude: -34.3375,
+      longitude: -56.7136,
+      name: "San José",
+    },
+    soriano: {
+      latitude: -33.2558,
+      longitude: -58.0305,
+      name: "Soriano",
+    },
+    tacuarembo: {
+      latitude: -31.7333,
+      longitude: -55.9833,
+      name: "Tacuarembó",
+    },
+    "treinta y tres": {
+      latitude: -33.2333,
+      longitude: -54.3833,
+      name: "Treinta y Tres",
+    },
+  }
+
+  const department = departmentCoordinates[normalizedCity]
+
+  if (department) {
+    return department
+  }
+
   const response = await fetch(
-   `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=es&format=json`
+    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
+      city
+    )}&count=10&language=es&format=json`
   )
 
   const data = await response.json()
@@ -29,7 +144,6 @@ export async function getCoordinates(city: string) {
   if (!uruguayResult) {
     return null
   }
-
 
   return {
     latitude: uruguayResult.latitude,
