@@ -1,16 +1,21 @@
+import type { WeatherResponse } from "../types/weather"
+
 export async function getCurrentWeather(
   latitude: number,
   longitude: number
-) {
+): Promise<WeatherResponse> {
   const response = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code&hourly=temperature_2m,apparent_temperature,weather_code,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`
   )
 
-  const data = await response.json()
+  if (!response.ok) {
+    throw new Error("No se pudo obtener el clima")
+  }
+
+  const data: WeatherResponse = await response.json()
 
   return data
 }
-
 export async function getCoordinates(city: string) {
   const normalizedCity = city
     .trim()

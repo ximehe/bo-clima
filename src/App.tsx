@@ -10,6 +10,7 @@ import { getCurrentWeather, getCoordinates, getCurrentLocation, getLocationName 
 import Navbar from "./components/Navbar"
 import { getWeatherAdvice } from "./utils/weatherAdvice"
 import boclimaLoader from "./assets/boclima-logo-loader.png"
+import HourlyForecast from "./components/HourlyForecast"
 
 function App() {
 
@@ -138,13 +139,16 @@ if (!weather) {
 
         <div className="lg:col-span-2 space-y-6">
 
-        <CurrentWeather
-        city={city}
-        temperature={weather.current.temperature_2m}
-        condition={getWeatherDescription(weather.current.weather_code)}
-        icon={getWeatherIcon(weather.current.weather_code)}
-        isCurrentLocation={isCurrentLocation}
-        darkMode={darkMode}
+       <CurrentWeather
+          city={city}
+          temperature={weather.current.temperature_2m}
+          feelsLike={weather.current.apparent_temperature}
+          minTemperature={weather.daily.temperature_2m_min[0]}
+          maxTemperature={weather.daily.temperature_2m_max[0]}
+          condition={getWeatherDescription(weather.current.weather_code)}
+          icon={getWeatherIcon(weather.current.weather_code)}
+          isCurrentLocation={isCurrentLocation}
+          darkMode={darkMode}
         />
 
         <WeatherDetails
@@ -152,6 +156,7 @@ if (!weather) {
         wind={weather.current.wind_speed_10m}
         darkMode={darkMode}
         />
+
 
         </div>
 
@@ -167,6 +172,17 @@ if (!weather) {
 
        </div>
 
+        <HourlyForecast
+          hourly={{
+            time: weather.hourly.time,
+            temperature: weather.hourly.temperature_2m,
+            weatherCode: weather.hourly.weather_code,
+            precipitationProbability:
+              weather.hourly.precipitation_probability,
+          }}
+          darkMode={darkMode}
+        />
+        
        <Forecast
         daily={{
           time: weather.daily.time,

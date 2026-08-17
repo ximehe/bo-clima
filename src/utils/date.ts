@@ -6,3 +6,13 @@ export function formatDay(date: string): string {
     day: "numeric",
   })
 }
+
+export function formatHour(date: string): string {
+  const hour = new Date(date)
+
+  return hour.toLocaleTimeString("es-UY", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  })
+}

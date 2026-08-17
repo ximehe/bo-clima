@@ -1,6 +1,9 @@
 type CurrentWeatherProps = {
   city: string
   temperature: number
+  feelsLike: number
+  minTemperature: number
+  maxTemperature: number
   condition: string
   icon: string
   isCurrentLocation: boolean
@@ -10,6 +13,9 @@ type CurrentWeatherProps = {
 function CurrentWeather({
   city,
   temperature,
+  feelsLike,
+  minTemperature,
+  maxTemperature,
   condition,
   icon,
   isCurrentLocation,
@@ -65,6 +71,52 @@ function CurrentWeather({
       >
         {condition}
       </p>
+
+      <p
+        className={`text-sm mt-3 ${
+          darkMode ? "text-slate-400" : "text-slate-500"
+        }`}
+      >
+        Sensación térmica {Math.round(feelsLike)}°
+      </p>
+
+      <div className="flex justify-center gap-8 mt-5">
+        <div>
+          <p
+            className={`text-sm ${
+              darkMode ? "text-slate-400" : "text-slate-500"
+            }`}
+          >
+            ↓ Mínima
+          </p>
+
+          <p
+            className={`text-lg font-semibold ${
+              darkMode ? "text-white" : "text-slate-700"
+            }`}
+          >
+            {Math.round(minTemperature)}°
+          </p>
+        </div>
+
+        <div>
+          <p
+            className={`text-sm ${
+              darkMode ? "text-slate-400" : "text-slate-500"
+            }`}
+          >
+            ↑ Máxima
+          </p>
+
+          <p
+            className={`text-lg font-semibold ${
+              darkMode ? "text-white" : "text-slate-700"
+            }`}
+          >
+            {Math.round(maxTemperature)}°
+          </p>
+        </div>
+      </div>
 
     </section>
   )
