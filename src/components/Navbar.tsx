@@ -22,19 +22,17 @@ function Navbar({ city, onSearch, onCurrentLocation, darkMode,
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center md:justify-start gap-3 w-full md:w-auto">
         <div className="flex items-center">
           <div className="relative w-48 h-14">
             <img
               src={boclimaLogo2}
               alt="BoClima"
-              className="absolute left-0 top-[50%] -translate-y-1/2 h-35 w-auto object-contain"
+              className="absolute left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 h-35 w-auto object-contain md:left-0 md:translate-x-0"
             />
           </div>
         </div>
-
-      
-</div>
+      </div>
 
         <div className="flex items-center gap-2 w-full md:w-auto">
 

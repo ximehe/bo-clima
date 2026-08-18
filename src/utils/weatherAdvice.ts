@@ -253,7 +253,6 @@ const coldMessages = [
   "🧥 Hoy el buzo tiene trabajo.",
   "🥶 Está para abrigo, mate y a otra cosa.",
   "🧥 El frío está haciendo acto de presencia.",
-  "🥶 Hoy la remerita no negocia.",
   "🧥 Está de esos fríos que te hacen cerrar bien la campera."
 ]
 
