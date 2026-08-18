@@ -123,66 +123,81 @@ function WeatherBackground({
       )}
 
        {weatherType === "partly-cloudy" && !isNight && (
-        <>
-            {/* Arriba izquierda */}
-            <Cloud
-            darkMode={darkMode}
-            size="large"
-            className="
-                top-16
-                left-[5%]
-                animate-[cloudDrift_30s_ease-in-out_infinite]
-            "
-            />
+  <>
+    {/* Arriba izquierda */}
+    <Cloud
+      darkMode={darkMode}
+      size="large"
+      className="
+        absolute
+        top-12
+        left-[-15%]
+        md:top-16
+        md:left-[5%]
+        animate-[cloudDrift_30s_linear_infinite]
+      "
+    />
 
-            {/* Arriba derecha */}
-            <Cloud
-            darkMode={darkMode}
-            size="small"
-            className="
-                top-24
-                right-[5%]
-                animate-[cloudDriftReverse_40s_ease-in-out_infinite]
-            "
-            />
+    {/* Arriba derecha */}
+    <Cloud
+      darkMode={darkMode}
+      size="small"
+      className="
+        absolute
+        top-32
+        right-[-12%]
+        md:top-24
+        md:right-[5%]
+        animate-[cloudDriftReverse_40s_linear_infinite]
+      "
+    />
 
-            {/* Centro */}
-            <Cloud
-            darkMode={darkMode}
-            size="small"
-            className="
-                top-[35%]
-                left-[40%]
-                opacity-70
-                animate-[cloudDrift_45s_ease-in-out_infinite]
-            "
-            />
+    {/* Centro */}
+    <Cloud
+      darkMode={darkMode}
+      size="small"
+      className="
+        absolute
+        top-[38%]
+        left-[5%]
+        md:top-[35%]
+        md:left-[40%]
+        opacity-70
+        animate-[cloudDrift_45s_linear_infinite]
+      "
+    />
 
-            {/* Abajo izquierda */}
-            <Cloud
-            darkMode={darkMode}
-            size="small"
-            className="
-                top-[55%]
-                left-[15%]
-                opacity-60
-                animate-[cloudDriftReverse_50s_ease-in-out_infinite]
-            "
-            />
+    {/* Abajo izquierda */}
+    <Cloud
+      darkMode={darkMode}
+      size="small"
+      className="
+        absolute
+        top-[62%]
+        left-[-15%]
+        md:top-[55%]
+        md:left-[15%]
+        opacity-60
+        animate-[cloudDriftReverse_50s_linear_infinite]
+      "
+    />
 
-            {/* Abajo derecha */}
-            <Cloud
-            darkMode={darkMode}
-            size="large"
-            className="
-                top-[60%]
-                right-[10%]
-                opacity-50
-                animate-[cloudDrift_55s_ease-in-out_infinite]
-            "
-            />
-        </>
-        )}
+    {/* Abajo derecha */}
+    <Cloud
+      darkMode={darkMode}
+      size="large"
+      className="
+        absolute
+        top-[70%]
+        right-[-15%]
+        md:top-[60%]
+        md:right-[10%]
+        opacity-50
+        animate-[cloudDrift_55s_linear_infinite]
+      "
+    />
+  </>
+)}
 
     {weatherType === "cloudy" && (
   <>
