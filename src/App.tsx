@@ -20,6 +20,7 @@ function App() {
   const [city, setCity] = useState("Montevideo")
   const [error, setError] = useState("")
   const [isCurrentLocation, setIsCurrentLocation] = useState(false)
+  const [dailyAdvice, setDailyAdvice] = useState("")
   const [darkMode, setDarkMode] = useState(() => {
   const savedDarkMode = localStorage.getItem("darkMode")
   return savedDarkMode === "true"
@@ -77,6 +78,29 @@ function App() {
   useEffect(() => {
   localStorage.setItem("darkMode", darkMode.toString())
   }, [darkMode])
+
+  useEffect(() => {
+  if (!weather) return
+
+  const today = new Date().toISOString().split("T")[0]
+  const adviceKey = `dailyAdvice_${city}_${today}`
+
+  const savedAdvice = localStorage.getItem(adviceKey)
+
+  if (savedAdvice) {
+    setDailyAdvice(savedAdvice)
+    return
+  }
+
+  const newAdvice = getWeatherAdvice(
+    weather.current.temperature_2m,
+    weather.current.weather_code,
+    weather.current.wind_speed_10m
+  )
+
+  localStorage.setItem(adviceKey, newAdvice)
+  setDailyAdvice(newAdvice)
+  }, [weather, city])
 
   const hour = new Date().getHours()
 
@@ -181,11 +205,8 @@ if (!weather) {
         </div>
 
         <div className="h-full">
-        <FunnyMessage message={getWeatherAdvice(
-          weather.current.temperature_2m,
-          weather.current.weather_code,
-          weather.current.wind_speed_10m
-        )}
+        <FunnyMessage 
+        message={dailyAdvice}
         darkMode={darkMode}
         />
         </div>
