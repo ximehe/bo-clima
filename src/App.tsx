@@ -12,6 +12,7 @@ import { getWeatherAdvice } from "./utils/weatherAdvice"
 import boclimaLoader from "./assets/boclima-logo-loader.png"
 import HourlyForecast from "./components/HourlyForecast"
 import WeatherBackground from "./components/WeatherBackground"
+import WeatherMap from "./components/WeatherMap"
 
 function App() {
 
@@ -212,6 +213,13 @@ if (!weather) {
         }}
         darkMode={darkMode}
         isNight={isNight}
+        />
+
+        <WeatherMap
+          latitude={weather.latitude}
+          longitude={weather.longitude}
+          darkMode={darkMode}
+          isNight={isNight}
         />
 
       </div>
