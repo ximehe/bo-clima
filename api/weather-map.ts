@@ -68,6 +68,11 @@ export default async function handler(
       "public, max-age=300"
     )
 
+    res.setHeader(
+      "CDN-Cache-Control",
+      "public, max-age=300, stale-while-revalidate=3600"
+    )
+
     return res.status(200).send(image)
   } catch (error) {
     if (
