@@ -27,8 +27,19 @@ function SearchBar({ city, onSearch, darkMode}: SearchBarProps) {
     <form onSubmit={handleSubmit} className="relative">
 
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-          🔍
-          </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="w-5 h-5"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-4-4" />
+        </svg>
+      </span>
 
       <input
         type="text"
