@@ -2,6 +2,14 @@ import { useEffect, useRef } from "react"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 
+delete (L.Icon.Default.prototype as any)._getIconUrl
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: "/leaflet/marker-icon-2x.png",
+  iconUrl: "/leaflet/marker-icon.png",
+  shadowUrl: "/leaflet/marker-shadow.png",
+})
+
 type WeatherMapProps = {
   latitude: number
   longitude: number
@@ -53,21 +61,17 @@ function WeatherMap({
   )
 
     // ☁️ Nubosidad
-    const cloudsLayer = L.tileLayer(
-      "/api/weather-map?layer=clouds_new&z={z}&x={x}&y={y}",
-      {
-        opacity: 0.55,
-        minZoom: 5,
-        maxZoom: 7,
-        noWrap: true,
-        updateWhenIdle: true,
-        updateWhenZooming: false,
-        keepBuffer: 1,
-        attribution:
-          '&copy; <a href="https://openweathermap.org/">OpenWeather</a>',
-      }
-    )
-    
+   const cloudsLayer = L.tileLayer(
+  "/api/weather-map?layer=clouds_new&z={z}&x={x}&y={y}",
+  {
+    opacity: 0.55,
+    minZoom: 5,
+    maxZoom: 8,
+    noWrap: true,
+    attribution:
+      '&copy; <a href="https://openweathermap.org/">OpenWeather</a>',
+  }
+)
 satelliteLayer.addTo(map)
 
     const baseMaps = {
