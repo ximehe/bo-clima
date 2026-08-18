@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar"
 import { getWeatherAdvice } from "./utils/weatherAdvice"
 import boclimaLoader from "./assets/boclima-logo-loader.png"
 import HourlyForecast from "./components/HourlyForecast"
+import WeatherBackground from "./components/WeatherBackground"
 
 function App() {
 
@@ -80,7 +81,7 @@ if (!weather) {
   return (
     <main
       className={`min-h-screen flex items-center justify-center px-6 transition-colors duration-300 ${
-        darkMode ? "bg-[#0F172A]" : "bg-[#7DD3FC]"
+        darkMode ? "bg-[#0F172A]" : "bg-[#E0F2FE]"
       }`}
     >
       <div className="text-center">
@@ -115,17 +116,22 @@ if (!weather) {
 }
   return (
     <>
-     <Navbar
-     city={city}
-     onSearch={handleSearch}
-     onCurrentLocation={handleCurrentLocation}
-     darkMode={darkMode}
-     onToggleDarkMode={() => setDarkMode(!darkMode)}
-     />
-    <main className={`min-h-screen transition-colors duration-300 ${
-     darkMode ? "bg-[#0F172A]" : "bg-[#7DD3FC]"
-     }`}
-    >
+    <div className="relative z-10">
+  <Navbar
+    city={city}
+    onSearch={handleSearch}
+    onCurrentLocation={handleCurrentLocation}
+    darkMode={darkMode}
+    onToggleDarkMode={() => setDarkMode(!darkMode)}
+  />
+</div>
+
+<WeatherBackground
+  weatherCode={weather.current.weather_code}
+  darkMode={darkMode}
+/>
+
+<main className="relative z-10 min-h-screen transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6 py-8">
         
 
@@ -182,7 +188,7 @@ if (!weather) {
           }}
           darkMode={darkMode}
         />
-        
+
        <Forecast
         daily={{
           time: weather.daily.time,
