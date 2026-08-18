@@ -31,7 +31,7 @@ function WeatherMap({
 
     const map = L.map(mapContainerRef.current, {
       minZoom: 5,
-      maxZoom: 8,
+      maxZoom: 15,
       maxBounds: [
         [-38, -59],
         [-30, -53],
@@ -53,7 +53,7 @@ function WeatherMap({
     {
       opacity: 0.65,
       minZoom: 5,
-      maxZoom: 8,
+      maxZoom: 15,
       noWrap: true,
       attribution:
         '&copy; <a href="https://openweathermap.org/">OpenWeather</a>',
@@ -66,7 +66,7 @@ function WeatherMap({
   {
     opacity: 0.55,
     minZoom: 5,
-    maxZoom: 8,
+    maxZoom: 15,
     noWrap: true,
     attribution:
       '&copy; <a href="https://openweathermap.org/">OpenWeather</a>',
