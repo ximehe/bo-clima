@@ -77,6 +77,19 @@ function App() {
   localStorage.setItem("darkMode", darkMode.toString())
   }, [darkMode])
 
+  const hour = new Date().getHours()
+
+  const params = new URLSearchParams(window.location.search)
+
+  const testTime = params.get("time")
+
+  const isNight =
+    testTime === "night"
+      ? true
+      : testTime === "day"
+        ? false
+        : hour >= 20 || hour < 6
+        
 if (!weather) {
   return (
     <main
@@ -187,6 +200,7 @@ if (!weather) {
               weather.hourly.precipitation_probability,
           }}
           darkMode={darkMode}
+          isNight={isNight}
         />
 
        <Forecast
@@ -197,6 +211,7 @@ if (!weather) {
           weatherCode: weather.daily.weather_code,
         }}
         darkMode={darkMode}
+        isNight={isNight}
         />
 
       </div>

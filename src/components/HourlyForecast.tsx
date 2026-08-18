@@ -11,9 +11,10 @@ type HourlyForecastProps = {
     precipitationProbability: number[]
   }
   darkMode: boolean
+  isNight: boolean
 }
 
-function HourlyForecast({ hourly, darkMode }: HourlyForecastProps) {
+function HourlyForecast({ hourly, darkMode, isNight }: HourlyForecastProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -90,13 +91,15 @@ function HourlyForecast({ hourly, darkMode }: HourlyForecastProps) {
 
   return (
     <section className="mt-6">
-      <h2
-        className={`text-2xl font-bold mb-4 ${
-          darkMode ? "text-white" : "text-slate-800"
-        }`}
-      >
-        Pronóstico por hora
-      </h2>
+     <h2
+      className={`text-2xl font-bold mb-4 ${
+        darkMode || isNight
+          ? "text-white"
+          : "text-slate-800"
+      }`}
+    >
+      Pronóstico por hora
+    </h2>
 
       <div className="flex items-center gap-3">
         {canScrollLeft && (
