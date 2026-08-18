@@ -58,13 +58,17 @@ function WeatherMap({
       {
         opacity: 0.55,
         minZoom: 5,
-        maxZoom: 8,
+        maxZoom: 7,
         noWrap: true,
+        updateWhenIdle: true,
+        updateWhenZooming: false,
+        keepBuffer: 1,
         attribution:
           '&copy; <a href="https://openweathermap.org/">OpenWeather</a>',
       }
     )
-    satelliteLayer.addTo(map)
+    
+satelliteLayer.addTo(map)
 
     const baseMaps = {
       "🛰️ Satélite": satelliteLayer,

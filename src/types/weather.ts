@@ -1,4 +1,6 @@
 export interface WeatherResponse {
+  latitude: number
+  longitude: number
   current: {
     temperature_2m: number
     apparent_temperature: number

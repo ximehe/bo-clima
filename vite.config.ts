@@ -1,7 +1,7 @@
 import { defineConfig, type Plugin } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
-import weatherMapHandler from "./api/weather-map"
+import weatherMapHandler from "./api/weather-map.js"
 import dotenv from "dotenv"
 
 dotenv.config()
