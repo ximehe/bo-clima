@@ -9,10 +9,10 @@ import { getWeatherIcon } from "./utils/weatherCode"
 import { getCurrentWeather, getCoordinates, getCurrentLocation, getLocationName } from "./services/weatherApi"
 import Navbar from "./components/Navbar"
 import { getWeatherAdvice } from "./utils/weatherAdvice"
-import boclimaLoader from "./assets/boclima-logo-loader.png"
 import HourlyForecast from "./components/HourlyForecast"
 import WeatherBackground from "./components/WeatherBackground"
 import WeatherMap from "./components/WeatherMap"
+import WeatherLoader from "./components/WeatherLoader"
 
 function App() {
 
@@ -117,41 +117,13 @@ function App() {
         
 if (!weather) {
   return (
-    <main
-      className={`min-h-screen flex items-center justify-center px-6 transition-colors duration-300 ${
-        darkMode ? "bg-[#0F172A]" : "bg-[#E0F2FE]"
-      }`}
-    >
-      <div className="text-center">
-
-        <div className="flex justify-center mb-2">
-          <img
-            src={boclimaLoader}
-            alt="BoClima"
-            className="w-[200px] h-[200px] object-contain animate-pulse"
-          />
-        </div>
-
-        <p
-          className={`text-2xl font-semibold ${
-            darkMode ? "text-white" : "text-slate-800"
-          }`}
-        >
-          Cargando el clima...
-        </p>
-
-        <p
-          className={`mt-2 ${
-            darkMode ? "text-slate-400" : "text-slate-500"
-          }`}
-        >
-          Estamos mirando cómo viene el cielo ☁️
-        </p>
-
-      </div>
-    </main>
+    <WeatherLoader
+      darkMode={darkMode}
+      isNight={isNight}
+    />
   )
 }
+
   return (
     <>
     <div className="relative z-10">
