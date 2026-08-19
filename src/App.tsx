@@ -48,7 +48,7 @@ function App() {
       setIsLoading(false)
 
       setError(
-        "⚠️ No encontramos esa ciudad. Probá con otro departamento o localidad de Uruguay 🇺🇾."
+        " No encontramos esa ciudad. Probá con otro departamento o localidad de Uruguay 🇺🇾."
       )
 
       return
@@ -185,9 +185,16 @@ function App() {
         <div className="max-w-6xl mx-auto px-6 py-8">
 
           {error && (
-            <p className="text-red-500 text-center mb-4">
-              {error}
-            </p>
+            <div
+              className={`mb-6 flex items-center justify-center gap-3 rounded-2xl border px-5 py-3 text-sm shadow-sm transition-all duration-300 ${
+                darkMode
+                  ? "bg-red-950/40 border-red-900/60 text-red-300"
+                  : "bg-red-50 border-red-200 text-red-600"
+              }`}
+            >
+              <span className="text-lg">⚠️</span>
+              <p>{error}</p>
+            </div>
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
